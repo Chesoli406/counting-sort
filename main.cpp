@@ -47,17 +47,25 @@ void printArray(int arr[], int n) {
 }
 
 int main() {
-    int original[] = {5, 1, 9, 3, 7};
-    int n = sizeof(original) / sizeof(original[0]);
+    int n;
+    cout << "Enter number of integers: ";
+    cin >> n;
 
-    int arr1[100], arr2[100];
+    int original[2000000];
+
+    cout << "Enter " << n << " integers:" << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> original[i];
+    }
+
+    int arr1[2000000], arr2[2000000];
     copyArray(original, arr1, n);
     copyArray(original, arr2, n);
 
     long long bubbleComparisons = 0, bubbleSwaps = 0;
     long long selectionComparisons = 0, selectionSwaps = 0;
 
-    cout << "Original list: ";
+    cout << "\nOriginal list: ";
     printArray(original, n);
 
     bubbleSortDescending(arr1, n, bubbleComparisons, bubbleSwaps);
