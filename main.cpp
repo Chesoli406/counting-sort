@@ -52,7 +52,7 @@ void generateRandomArray(int arr[], int n) {
     }
 }
 
-void printArray(int arr[], int n) {
+void printSample(int arr[], int n) {
     int limit = (n < 20) ? n : 20;
     for (int i = 0; i < limit; i++) {
         cout << arr[i] << " ";
@@ -65,28 +65,31 @@ void printArray(int arr[], int n) {
 
 void runExperiment(int n) {
     int* original = new int[n];
-    int* arr1 = new int[n];
-    int* arr2 = new int[n];
+    int* bubbleArray = new int[n];
+    int* selectionArray = new int[n];
 
     generateRandomArray(original, n);
-    copyArray(original, arr1, n);
-    copyArray(original, arr2, n);
+    copyArray(original, bubbleArray, n);
+    copyArray(original, selectionArray, n);
 
     long long bubbleComparisons = 0, bubbleSwaps = 0;
     long long selectionComparisons = 0, selectionSwaps = 0;
 
-    bubbleSortDescending(arr1, n, bubbleComparisons, bubbleSwaps);
-    selectionSortDescending(arr2, n, selectionComparisons, selectionSwaps);
+    bubbleSortDescending(bubbleArray, n, bubbleComparisons, bubbleSwaps);
+    selectionSortDescending(selectionArray, n, selectionComparisons, selectionSwaps);
 
-    cout << "\nList size: " << n << endl;
+    cout << "\n==============================" << endl;
+    cout << "List size: " << n << endl;
     cout << "Bubble Sort -> Comparisons: " << bubbleComparisons
          << ", Swaps: " << bubbleSwaps << endl;
     cout << "Selection Sort -> Comparisons: " << selectionComparisons
          << ", Swaps: " << selectionSwaps << endl;
+    cout << "Sorted sample (Bubble): ";
+    printSample(bubbleArray, n);
 
     delete[] original;
-    delete[] arr1;
-    delete[] arr2;
+    delete[] bubbleArray;
+    delete[] selectionArray;
 }
 
 int main() {
